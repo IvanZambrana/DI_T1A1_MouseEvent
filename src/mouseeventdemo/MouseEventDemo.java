@@ -5,11 +5,9 @@
 package mouseeventdemo;
 
 import javafx.application.Application;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.layout.StackPane;
+import javafx.scene.layout.Pane;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 /**
@@ -20,22 +18,25 @@ public class MouseEventDemo extends Application {
     
     @Override
     public void start(Stage primaryStage) {
-        Button btn = new Button();
-        btn.setText("Say 'Hello World'");
-        btn.setOnAction(new EventHandler<ActionEvent>() {
-            
-            @Override
-            public void handle(ActionEvent event) {
-                System.out.println("Hello World!");
-            }
+
+        //Setting title
+        primaryStage.setTitle("MouseEvent");
+        
+        //Text
+        Text text = new Text("Programing is fun");
+        text.setX(100);
+        text.setY(100);
+        
+        //Mouse event
+        text.setOnMouseDragged( e -> {
+            text.setX(e.getX());
+            text.setY(e.getY());
         });
         
-        StackPane root = new StackPane();
-        root.getChildren().add(btn);
-        
+        //Pane and scene
+        Pane root = new Pane();
+        root.getChildren().add(text);
         Scene scene = new Scene(root, 300, 250);
-        
-        primaryStage.setTitle("Hello World!");
         primaryStage.setScene(scene);
         primaryStage.show();
     }
